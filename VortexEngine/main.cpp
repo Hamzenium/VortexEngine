@@ -1,8 +1,9 @@
 #include <iostream>
-#include <algorithm>
-#include <unordered_map>
-#include <memory>
-#include <vector> // Needed for std::vector
+#include <stdexcept>
+#include <string>
+#include <vector>
+#include <list>
+
 
 enum class OrderType {
     GoodTillCancel,
@@ -32,31 +33,80 @@ public:
         , asks_{asks}
     {}
 
-    const LevelInfos& GetBids() const { return bids_; }
-    const LevelInfos& GetAsks() const { return asks_; }
+    const LevelInfos& GetBids() const { return this->bids_; }
+    const LevelInfos& GetAsks() const { return this->asks_; }
 
 private:
     LevelInfos bids_;
     LevelInfos asks_;
 };
 
+class Order {
+public:
+    Order(OrderType orderType, OrderId orderId, Side side, Price price, Quantity quantity)
+        : orderType_{orderType}
+        , orderId_{orderId}
+        , side_{side}
+        , price_{price}
+        , initialQuantity_{quantity}
+        , remainingQuantity_{quantity}
+    {}
+
+    OrderId GetOrderId() const { return this->orderId_; }
+    Side GetSide() const { return this->side_; }
+    OrderType GetOrderType() const { return this->orderType_; }
+    Quantity GetInitalQuantity() const { return this->initialQuantity_; }
+    Quantity GetRemainingQuantity() const { return this->remainingQuantity_; }
+    Quantity GetFilledQuantity() const { return this->initialQuantity_ - this->remainingQuantity_; }
+
+    void Fill(Quantity quantity)
+    {
+        if (quantity > this->GetRemainingQuantity())
+            throw std::logic_error("Order (" + std::to_string(this->GetOrderId()) + ") cannot be filled for more than its remaining quantity");
+        this->remainingQuantity_ -= quantity;
+    }
+
+private:
+    OrderType orderType_;
+    OrderId orderId_;
+    Side side_;
+    Price price_;
+    Quantity initialQuantity_;
+    Quantity remainingQuantity_;
+};
+
+using OrderPointer = std::shared_ptr<Order>;
+
+using OrderPointers = std::list<OrderPointer>;
+
+class OrderModify
+{
+public:
+    OrderModify(OrderId orderId, Side side, Price price, Quantity quantity)
+        : orderId_{ orderId }
+        , price_{ price }
+        , side_{ side }
+        , quantity_{ quantity }
+    { }
+
+    OrderId GetOrderId() const { return orderId_; }
+    Price GetPrice() const { return price_; }
+    Side GetSide() const { return side_; }
+    Quantity GetQuantity() const { return quantity_; }
+
+    OrderPointer ToOrderPointer(OrderType type) const
+    {
+        return std::make_shared<Order>(type, GetOrderId(), GetSide(), GetPrice(), GetQuantity());
+    }
+
+private:
+    OrderId orderId_;
+    Price price_;
+    Side side_;
+    Quantity quantity_;
+};
+
 int main()
 {
-    // Example usage
-    LevelInfos bids = { {100, 10}, {99, 15} };
-    LevelInfos asks = { {101, 5}, {102, 20} };
-
-    OrderbookLevelInfos ob(bids, asks);
-
-    std::cout << "Bids:" << std::endl;
-    for (const auto& lvl : ob.GetBids()) {
-        std::cout << "Price: " << lvl.price_ << ", Qty: " << lvl.quantity_ << std::endl;
-    }
-
-    std::cout << "Asks:" << std::endl;
-    for (const auto& lvl : ob.GetAsks()) {
-        std::cout << "Price: " << lvl.price_ << ", Qty: " << lvl.quantity_ << std::endl;
-    }
-
     return 0;
 }
