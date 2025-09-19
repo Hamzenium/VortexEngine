@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5B25AE6A2E1A156E0057DB18 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5B25AE692E1A156E0057DB18 /* main.cpp */; };
+		5BA84B052E7E05380048345B /* Orderbook.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5BA84B042E7E05380048345B /* Orderbook.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,18 @@
 /* Begin PBXFileReference section */
 		5B25AE662E1A156E0057DB18 /* VortexEngine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VortexEngine; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B25AE692E1A156E0057DB18 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		5BA84AFE2E7E04720048345B /* Usings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Usings.h; sourceTree = "<group>"; };
+		5BA84AFF2E7E04A20048345B /* TradeInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TradeInfo.h; sourceTree = "<group>"; };
+		5BA84B002E7E04C00048345B /* Trade.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Trade.h; sourceTree = "<group>"; };
+		5BA84B012E7E04DA0048345B /* Side.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Side.h; sourceTree = "<group>"; };
+		5BA84B022E7E04F30048345B /* OrderbookLevelInfos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderbookLevelInfos.h; sourceTree = "<group>"; };
+		5BA84B032E7E05130048345B /* Orderbook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Orderbook.h; sourceTree = "<group>"; };
+		5BA84B042E7E05380048345B /* Orderbook.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Orderbook.cpp; sourceTree = "<group>"; };
+		5BA84B062E7E05680048345B /* OrderType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderType.h; sourceTree = "<group>"; };
+		5BA84B072E7E05800048345B /* OrderModify.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderModify.h; sourceTree = "<group>"; };
+		5BA84B082E7E05A70048345B /* Order.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Order.h; sourceTree = "<group>"; };
+		5BA84B092E7E05BE0048345B /* LevelInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelInfo.h; sourceTree = "<group>"; };
+		5BA84B0A2E7E05DA0048345B /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +71,18 @@
 			isa = PBXGroup;
 			children = (
 				5B25AE692E1A156E0057DB18 /* main.cpp */,
+				5BA84AFE2E7E04720048345B /* Usings.h */,
+				5BA84AFF2E7E04A20048345B /* TradeInfo.h */,
+				5BA84B002E7E04C00048345B /* Trade.h */,
+				5BA84B012E7E04DA0048345B /* Side.h */,
+				5BA84B022E7E04F30048345B /* OrderbookLevelInfos.h */,
+				5BA84B032E7E05130048345B /* Orderbook.h */,
+				5BA84B042E7E05380048345B /* Orderbook.cpp */,
+				5BA84B062E7E05680048345B /* OrderType.h */,
+				5BA84B072E7E05800048345B /* OrderModify.h */,
+				5BA84B082E7E05A70048345B /* Order.h */,
+				5BA84B092E7E05BE0048345B /* LevelInfo.h */,
+				5BA84B0A2E7E05DA0048345B /* Constants.h */,
 			);
 			path = VortexEngine;
 			sourceTree = "<group>";
@@ -120,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B25AE6A2E1A156E0057DB18 /* main.cpp in Sources */,
+				5BA84B052E7E05380048345B /* Orderbook.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
